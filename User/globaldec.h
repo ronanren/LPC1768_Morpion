@@ -13,3 +13,4 @@ int refreshLCD;
 char boutonPush;
 unsigned short cases[9];
 unsigned short lastjoueur;
+char gagne;

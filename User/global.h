@@ -10,3 +10,4 @@ extern char flagtacheclavier;
 extern char boutonPush;
 extern unsigned short cases[9];
 extern unsigned short lastjoueur;
+extern char gagne;

@@ -36,11 +36,13 @@ void pin_Configuration()
 }
 
 void write_lcd(){
-	sprintf(chaine,"Score Bleu : 0");
+	uint8_t scorebleu;
+	i2c_eeprom_read(0, &scorebleu, 2);
+	sprintf(chaine,"Score Bleu : %d", scorebleu);
 	LCD_write_english_string(32,10,chaine,White,Blue);
 	sprintf(chaine,"Score Rouge : 0");
 	LCD_write_english_string(32,30,chaine,White,Blue);
-	dessiner_rect(10,60,74,74,2,1,Black, cases[0]); // |1|2|3|
+	dessiner_rect(10,60,74,74,2,1,Black,cases[0]); // |1|2|3|
 	dessiner_rect(84,60,74,74,2,1,Black,cases[1]);  // |4|5|6|
 	dessiner_rect(158,60,74,74,2,1,Black,cases[2]); // |7|8|9|
 	dessiner_rect(10,134,74,74,2,1,Black,cases[3]);
@@ -63,14 +65,20 @@ void updatejoueur(int idcase){
 }
 
 void verifgagnant(){
+	uint8_t scorebleu;
+	i2c_eeprom_read(0, &scorebleu, 1);
 	// Verification ligne 1
 	if (cases[0] != White && cases[0] == cases[1] && cases[0] == cases[2]){
-		if (cases[0] == Blue)
+		if (cases[0] == Blue){
 			sprintf(chaine,"Joueur Bleu a gagne");
-		else
+			scorebleu = scorebleu + 1;
+			i2c_eeprom_write(0, &scorebleu, sizeof(scorebleu));
+		} else {
 			sprintf(chaine,"Joueur Rouge a gagne");
-		dessiner_rect(10,120,200,200,2,1,Black,White);
-		LCD_write_english_string(32,100,chaine,White,Blue);
+		}
+		lcd_clear(cases[0]);
+		LCD_write_english_string(40,120,chaine,White,cases[0]);
+		gagne = '1';
 	}
 	// Verification ligne 2
 	if (cases[3] != White && cases[3] == cases[4] && cases[3] == cases[5]){
@@ -78,7 +86,9 @@ void verifgagnant(){
 			sprintf(chaine,"Joueur Bleu a gagne");
 		else
 			sprintf(chaine,"Joueur Rouge a gagne");
-		LCD_write_english_string(32,20,chaine,White,Blue);
+		lcd_clear(cases[3]);
+		LCD_write_english_string(40,120,chaine,White,cases[3]);
+		gagne = '1';
 	}
 	// Verification ligne 3
 	if (cases[6] != White && cases[6] == cases[7] && cases[6] == cases[8]){
@@ -86,7 +96,69 @@ void verifgagnant(){
 			sprintf(chaine,"Joueur Bleu a gagne");
 		else
 			sprintf(chaine,"Joueur Rouge a gagne");
-		LCD_write_english_string(32,20,chaine,White,Blue);
+		lcd_clear(cases[6]);
+		LCD_write_english_string(40,120,chaine,White,cases[6]);
+		gagne = '1';
+	}
+	
+	// Verification colonne 1
+	if (cases[0] != White && cases[3] == cases[0] && cases[0] == cases[6]){
+		if (cases[0] == Blue)
+			sprintf(chaine,"Joueur Bleu a gagne");
+		else
+			sprintf(chaine,"Joueur Rouge a gagne");
+		lcd_clear(cases[0]);
+		LCD_write_english_string(40,120,chaine,White,cases[0]);
+		gagne = '1';
+	}
+	// Verification colonne 2
+	if (cases[1] != White && cases[4] == cases[1] && cases[1] == cases[7]){
+		if (cases[1] == Blue)
+			sprintf(chaine,"Joueur Bleu a gagne");
+		else
+			sprintf(chaine,"Joueur Rouge a gagne");
+		lcd_clear(cases[1]);
+		LCD_write_english_string(40,120,chaine,White,cases[1]);
+		gagne = '1';
+	}
+	// Verification colonne 3
+	if (cases[2] != White && cases[5] == cases[2] && cases[2] == cases[8]){
+		if (cases[2] == Blue)
+			sprintf(chaine,"Joueur Bleu a gagne");
+		else
+			sprintf(chaine,"Joueur Rouge a gagne");
+		lcd_clear(cases[2]);
+		LCD_write_english_string(40,120,chaine,White,cases[2]);
+		gagne = '1';
+	}
+	
+	// Verification diagonale gauche à droite
+	if (cases[0] != White && cases[4] == cases[0] && cases[0] == cases[8]){
+		if (cases[0] == Blue)
+			sprintf(chaine,"Joueur Bleu a gagne");
+		else
+			sprintf(chaine,"Joueur Rouge a gagne");
+		lcd_clear(cases[0]);
+		LCD_write_english_string(40,120,chaine,White,cases[0]);
+		gagne = '1';
+	}
+	// Verification diagonale droite à gauche
+	if (cases[2] != White && cases[4] == cases[2] && cases[2] == cases[6]){
+		if (cases[2] == Blue)
+			sprintf(chaine,"Joueur Bleu a gagne");
+		else
+			sprintf(chaine,"Joueur Rouge a gagne");
+		lcd_clear(cases[2]);
+		LCD_write_english_string(40,120,chaine,White,cases[2]);
+		gagne = '1';
+	}
+	
+	// Verification égalité
+	if (cases[0] != White && cases[1] != White && cases[2] != White && cases[3] != White && cases[4] != White && cases[5] != White && cases[6] != White && cases[7] != White && cases[8] != White){
+		sprintf(chaine,"Egalite");
+		lcd_clear(Grey);
+		LCD_write_english_string(90,120,chaine,Black,Grey);
+		gagne = '1';
 	}
 }
 
@@ -111,14 +183,14 @@ int main(void)
 		cases[6] = White;
 		cases[7] = White;
 		cases[8] = White;
+		gagne = '0';
 	
 		// Gestion de la mémoire I2C
-//		init_i2c_eeprom();
-//		data = 66;
-//		slaveAddress = 0;
-//		lengthdata = sizeof(data);
+		init_i2c_eeprom();
+		data = 0;
 //		i2c_eeprom_write(slaveAddress, &data, lengthdata);
-//		i2c_eeprom_read(slaveAddress, &datarecieve, lengthdata); 
+		i2c_eeprom_read(0, &datarecieve, 1); // slaveaddress a 0 pour le score du joueur bleu
+		// i2c_eeprom_write(0, &data, sizeof(data));
 	
 	  // Init(); // init variables globales et pinsel pour IR => à faire
 	
@@ -133,38 +205,58 @@ int main(void)
 			if (flagtacheclavier == '1'){
 				flagtacheclavier = '0';
 				touch_read();
-				if (touch_x > 600 && touch_x <= 1400 && touch_y > 1000 && touch_y <= 1600){ // carre1
-					updatejoueur(0);
+				if (gagne == '2'){
+					cases[0] = White;
+					cases[1] = White;
+					cases[2] = White;
+					cases[3] = White;
+					cases[4] = White;
+					cases[5] = White;
+					cases[6] = White;
+					cases[7] = White;
+					cases[8] = White;
+					lastjoueur = Red;
+					lcd_clear(Blue);
 					write_lcd();
-				} else if (touch_x > 1400 && touch_x <= 2200 && touch_y > 1000 && touch_y <= 1600){ // carre2
-					updatejoueur(1);
-					write_lcd();
-				} else if (touch_x > 2400 && touch_x <= 3400 && touch_y > 1000 && touch_y <= 1600){ // carre3
-					updatejoueur(2);
-					write_lcd();
-				} else if (touch_x > 600 && touch_x <= 1400 && touch_y > 1600 && touch_y <= 2400){ // carre4
-					updatejoueur(3);
-					write_lcd();
-				} else if (touch_x > 1400 && touch_x <= 2200 && touch_y > 1600 && touch_y <= 2400){ // carre5
-					updatejoueur(4);
-					write_lcd();
-				} else if (touch_x > 2400 && touch_x <= 3400 && touch_y > 1600 && touch_y <= 2400){ // carre6
-					updatejoueur(5);
-					write_lcd();
-				} else if (touch_x > 600 && touch_x <= 1400 && touch_y > 2400 && touch_y <= 3200){ // carre7
-					updatejoueur(6);
-					write_lcd();
-				} else if (touch_x > 1400 && touch_x <= 2200 && touch_y > 2400 && touch_y <= 3200){ // carre8
-					updatejoueur(7);
-					write_lcd();
-				} else if (touch_x > 2400 && touch_x <= 3400 && touch_y > 2400 && touch_y <= 3200){ // carre9
-					updatejoueur(8);
-					write_lcd();
+					gagne = '0';
 				}
-				verifgagnant();
-			}
+				if (gagne == '1'){
+					gagne = '2';
+				}
+				if (gagne == '0'){
+					if (touch_x > 600 && touch_x <= 1400 && touch_y > 1000 && touch_y <= 1600){ // carre1
+						updatejoueur(0);
+						write_lcd();
+					} else if (touch_x > 1400 && touch_x <= 2200 && touch_y > 1000 && touch_y <= 1600){ // carre2
+						updatejoueur(1);
+						write_lcd();
+					} else if (touch_x > 2400 && touch_x <= 3400 && touch_y > 1000 && touch_y <= 1600){ // carre3
+						updatejoueur(2);
+						write_lcd();
+					} else if (touch_x > 600 && touch_x <= 1400 && touch_y > 1600 && touch_y <= 2400){ // carre4
+						updatejoueur(3);
+						write_lcd();
+					} else if (touch_x > 1400 && touch_x <= 2200 && touch_y > 1600 && touch_y <= 2400){ // carre5
+						updatejoueur(4);
+						write_lcd();
+					} else if (touch_x > 2400 && touch_x <= 3400 && touch_y > 1600 && touch_y <= 2400){ // carre6
+						updatejoueur(5);
+						write_lcd();
+					} else if (touch_x > 600 && touch_x <= 1400 && touch_y > 2400 && touch_y <= 3200){ // carre7
+						updatejoueur(6);
+						write_lcd();
+					} else if (touch_x > 1400 && touch_x <= 2200 && touch_y > 2400 && touch_y <= 3200){ // carre8
+						updatejoueur(7);
+						write_lcd();
+					} else if (touch_x > 2400 && touch_x <= 3400 && touch_y > 2400 && touch_y <= 3200){ // carre9
+						updatejoueur(8);
+						write_lcd();
+					}
+					verifgagnant();
+				}
 		}
 	}
+}
 
 //---------------------------------------------------------------------------------------------	
 #ifdef  DEBUG

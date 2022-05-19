@@ -72,44 +72,42 @@ compiling main.c...
   void timer1_init();
 ..\User\timer1.h(3): warning:  #1295-D: Deprecated declaration timer1_init - give arg types
   void timer1_init();
-..\User\global.h(12): warning:  #1-D: last line of file ends without a newline
-  extern unsigned short lastjoueur;
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
+  extern char gagne;
 ..\User\constantes.h(11): warning:  #1-D: last line of file ends without a newline
   };
-..\User\globaldec.h(15): warning:  #1-D: last line of file ends without a newline
-  unsigned short lastjoueur;
-..\User\main.c(98): warning:  #177-D: variable "n"  was declared but never referenced
+..\User\globaldec.h(16): warning:  #1-D: last line of file ends without a newline
+  char gagne;
+..\User\main.c(170): warning:  #177-D: variable "n"  was declared but never referenced
                 int n;
-..\User\main.c(99): warning:  #177-D: variable "lengthdata"  was declared but never referenced
+..\User\main.c(171): warning:  #177-D: variable "lengthdata"  was declared but never referenced
                 int lengthdata;
-..\User\main.c(100): warning:  #177-D: variable "data"  was declared but never referenced
+..\User\main.c(172): warning:  #550-D: variable "data"  was set but never used
                 uint8_t data;
-..\User\main.c(101): warning:  #177-D: variable "datarecieve"  was declared but never referenced
-                uint8_t datarecieve;
-..\User\main.c(102): warning:  #177-D: variable "slaveAddress"  was declared but never referenced
+..\User\main.c(174): warning:  #177-D: variable "slaveAddress"  was declared but never referenced
                 uint32_t slaveAddress;
-..\User\main.c: 13 warnings, 0 errors
+..\User\main.c: 12 warnings, 0 errors
 compiling ili_lcd_general.c...
 compiling lcd_api.c...
 compiling english_16x8.c...
 compiling affichagelcd.c...
 compiling touch_panel.c...
-..\User\global.h(12): warning:  #1-D: last line of file ends without a newline
-  extern unsigned short lastjoueur;
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
+  extern char gagne;
 ..\User\touch\touch_panel.c(17): warning:  #177-D: variable "touch_data_tx"  was declared but never referenced
       uint8_t touch_data_tx[BUF_SIZE];
 ..\User\touch\touch_panel.c: 2 warnings, 0 errors
 compiling memoire.c...
-..\User\global.h(12): warning:  #1-D: last line of file ends without a newline
-  extern unsigned short lastjoueur;
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
+  extern char gagne;
 ..\User\constantes.h(11): warning:  #1-D: last line of file ends without a newline
   };
 ..\User\memoire.c(35): warning:  #1-D: last line of file ends without a newline
   }
 ..\User\memoire.c: 3 warnings, 0 errors
 compiling timer1.c...
-..\User\global.h(12): warning:  #1-D: last line of file ends without a newline
-  extern unsigned short lastjoueur;
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
+  extern char gagne;
 ..\User\constantes.h(11): warning:  #1-D: last line of file ends without a newline
   };
 ..\User\timer1.h(3): warning:  #1-D: last line of file ends without a newline
@@ -124,9 +122,9 @@ compiling timer1.c...
   }
 ..\User\timer1.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=13136 RO-data=1792 RW-data=32 ZI-data=680  
+Program Size: Code=17072 RO-data=1792 RW-data=36 ZI-data=732  
 FromELF: creating hex file...
-".\Output\Project.axf" - 0 Error(s), 35 Warning(s).
+".\Output\Project.axf" - 0 Error(s), 34 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -149,7 +147,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.5.0
-Build Time Elapsed:  00:00:08
+Build Time Elapsed:  00:00:06
 </pre>
 </body>
 </html>
