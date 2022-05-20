@@ -425,12 +425,12 @@ ARM Macro Assembler    Page 7
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\output\startup_lpc17xx.d -o.\output\startup_lpc17xx.o -I.\RTE\_O
-pen1786 -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Keil_v5\A
-RM\PACK\Keil\LPC1700_DFP\2.7.0\Device\Include --predefine="__EVAL SETA 1" --pre
-define="__UVISION_VERSION SETA 535" --predefine="_RTE_ SETA 1" --predefine="LPC
-175x_6x SETA 1" --predefine="_RTE_ SETA 1" --predefine="__BUILD_WITH_EXAMPLE__ 
-SETA 1" --predefine="__RAM_MODE__ SETA 0" --list=.\listing\startup_lpc17xx.lst 
-..\Libraries\CM3\DeviceSupport\NXP\LPC17xx\startup\arm\startup_LPC17xx.s
+pen1786 -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\ARM\PA
+CK\Keil\LPC1700_DFP\2.7.0\Device\Include --predefine="__EVAL SETA 1" --predefin
+e="__UVISION_VERSION SETA 535" --predefine="_RTE_ SETA 1" --predefine="LPC175x_
+6x SETA 1" --predefine="_RTE_ SETA 1" --predefine="__BUILD_WITH_EXAMPLE__ SETA 
+1" --predefine="__RAM_MODE__ SETA 0" --list=.\listing\startup_lpc17xx.lst ..\Li
+braries\CM3\DeviceSupport\NXP\LPC17xx\startup\arm\startup_LPC17xx.s
 
 
 

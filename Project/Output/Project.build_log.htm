@@ -21,8 +21,8 @@ Target DLL:      Segger\JL2CM3.dll V2.99.40.0
 Dialog DLL:      TARMP1.DLL V1.26.0.0
  
 <h2>Project:</h2>
-D:\ENSSAT\S2\Archi\Morpion\Project\Project.uvprojx
-Project File Date:  05/17/2022
+C:\Users\rrenoux\Documents\LPC1768_Morpion\Project\Project.uvprojx
+Project File Date:  05/20/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -64,52 +64,62 @@ compiling lpc17xx_i2c.c...
 compiling main.c...
 ..\User\affichagelcd.h(9): warning:  #1-D: last line of file ends without a newline
    
-..\User\memoire.h(3): warning:  #1295-D: Deprecated declaration init_i2c_eeprom - give arg types
+..\User\constantes.h(20): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\User\global.h(14): warning:  #1-D: last line of file ends without a newline
+  extern char gagne;
+..\User\memoire.h(4): warning:  #1295-D: Deprecated declaration init_i2c_eeprom - give arg types
   void init_i2c_eeprom();
-..\User\memoire.h(5): warning:  #1-D: last line of file ends without a newline
-  void i2c_eeprom_read(uint16_t addr, uint8_t* data, int length);
+..\User\memoire.h(6): warning:  #1-D: last line of file ends without a newline
+  void i2c_eeprom_read(uint16_t addr, t_resultat* data, int length);
 ..\User\timer1.h(3): warning:  #1-D: last line of file ends without a newline
   void timer1_init();
 ..\User\timer1.h(3): warning:  #1295-D: Deprecated declaration timer1_init - give arg types
   void timer1_init();
-..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(14): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
-..\User\constantes.h(11): warning:  #1-D: last line of file ends without a newline
-  };
 ..\User\globaldec.h(16): warning:  #1-D: last line of file ends without a newline
   char gagne;
-..\User\main.c(170): warning:  #177-D: variable "n"  was declared but never referenced
+..\User\main.c(172): warning:  #177-D: variable "n"  was declared but never referenced
                 int n;
-..\User\main.c(171): warning:  #177-D: variable "lengthdata"  was declared but never referenced
+..\User\main.c(173): warning:  #177-D: variable "lengthdata"  was declared but never referenced
                 int lengthdata;
-..\User\main.c(172): warning:  #550-D: variable "data"  was set but never used
+..\User\main.c(175): warning:  #177-D: variable "data"  was declared but never referenced
                 uint8_t data;
-..\User\main.c(174): warning:  #177-D: variable "slaveAddress"  was declared but never referenced
+..\User\main.c(176): warning:  #177-D: variable "datarecieve"  was declared but never referenced
+                uint8_t datarecieve;
+..\User\main.c(177): warning:  #177-D: variable "slaveAddress"  was declared but never referenced
                 uint32_t slaveAddress;
-..\User\main.c: 12 warnings, 0 errors
+..\User\main.c: 14 warnings, 0 errors
 compiling ili_lcd_general.c...
 compiling lcd_api.c...
 compiling english_16x8.c...
 compiling affichagelcd.c...
 compiling touch_panel.c...
-..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
+..\User\constantes.h(20): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\User\global.h(14): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
 ..\User\touch\touch_panel.c(17): warning:  #177-D: variable "touch_data_tx"  was declared but never referenced
       uint8_t touch_data_tx[BUF_SIZE];
-..\User\touch\touch_panel.c: 2 warnings, 0 errors
+..\User\touch\touch_panel.c: 3 warnings, 0 errors
 compiling memoire.c...
-..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
+..\User\constantes.h(20): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\User\global.h(14): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
-..\User\constantes.h(11): warning:  #1-D: last line of file ends without a newline
-  };
-..\User\memoire.c(35): warning:  #1-D: last line of file ends without a newline
+..\User\memoire.h(4): warning:  #1295-D: Deprecated declaration init_i2c_eeprom - give arg types
+  void init_i2c_eeprom();
+..\User\memoire.h(6): warning:  #1-D: last line of file ends without a newline
+  void i2c_eeprom_read(uint16_t addr, t_resultat* data, int length);
+..\User\memoire.c(36): warning:  #1-D: last line of file ends without a newline
   }
-..\User\memoire.c: 3 warnings, 0 errors
+..\User\memoire.c: 5 warnings, 0 errors
 compiling timer1.c...
-..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
+..\User\constantes.h(20): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\User\global.h(14): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
-..\User\constantes.h(11): warning:  #1-D: last line of file ends without a newline
-  };
 ..\User\timer1.h(3): warning:  #1-D: last line of file ends without a newline
   void timer1_init();
 ..\User\timer1.h(3): warning:  #1295-D: Deprecated declaration timer1_init - give arg types
@@ -122,17 +132,17 @@ compiling timer1.c...
   }
 ..\User\timer1.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=17072 RO-data=1792 RW-data=36 ZI-data=732  
+Program Size: Code=17092 RO-data=1792 RW-data=36 ZI-data=732  
 FromELF: creating hex file...
-".\Output\Project.axf" - 0 Error(s), 34 Warning(s).
+".\Output\Project.axf" - 0 Error(s), 39 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
-                ARM.CMSIS.5.8.0
-                CMSIS (Common Microcontroller Software Interface Standard)
-   * Component: CORE Version: 5.5.0
+                http://www.keil.com/pack/ARM.CMSIS.5.0.1.pack
+                ARM.CMSIS.5.0.1
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.0.1
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.LPC1700_DFP.2.7.0.pack
@@ -141,13 +151,13 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_Open1786
-  C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include
   C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.7.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE:5.5.0
-Build Time Elapsed:  00:00:06
+   * Component: ARM::CMSIS:CORE:5.0.1
+Build Time Elapsed:  00:00:04
 </pre>
 </body>
 </html>

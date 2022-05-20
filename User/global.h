@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include "constantes.h"
 
 // mettez ici toutes les "extern" correspondant aux déclarations contenues dans globadec.h
 

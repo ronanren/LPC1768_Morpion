@@ -1,4 +1,5 @@
 .\output\memoire.o: ..\User\memoire.c
+.\output\memoire.o: ..\User\memoire.h
 .\output\memoire.o: ..\User\global.h
 .\output\memoire.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\memoire.o: ..\User\constantes.h

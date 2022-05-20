@@ -16,6 +16,7 @@
 #include "touch\touch_panel.h"
 #include "memoire.h"
 #include "timer1.h"
+#include "lpc17xx_i2c.h"
 
 #include "global.h"
 #include "globaldec.h" // fichier contenant toutes les déclarations de variables globales
@@ -27,7 +28,8 @@
 void pin_Configuration()
 {
 		// Gestion du pin connect bloc pour la mémoire par l'I2C0
-		LPC_PINCON->PINSEL1 |= (1<<22); // P0.27 => 01 sur 23:22 et P0.28 => 01 sur 25:24 
+		// P0.27 => 01 sur 23:22 et P0.28 => 01 sur 25:24 
+		LPC_PINCON->PINSEL1 |= (1<<22); 
 		LPC_PINCON->PINSEL1 |= (1<<24);
 		// Gestion des boutons poussoirs
 		// LPC_PINCON->PINSEL4 déja à 0 car P2.10 => 00 sur 21:20 et P2.11 => 00 sur 23:22
@@ -36,9 +38,9 @@ void pin_Configuration()
 }
 
 void write_lcd(){
-	uint8_t scorebleu;
-	i2c_eeprom_read(0, &scorebleu, 2);
-	sprintf(chaine,"Score Bleu : %d", scorebleu);
+	t_resultat resultat;
+	i2c_eeprom_read(0, &resultat, sizeof(resultat));
+	sprintf(chaine,"Score Bleu : %d", resultat.score_bleu);
 	LCD_write_english_string(32,10,chaine,White,Blue);
 	sprintf(chaine,"Score Rouge : 0");
 	LCD_write_english_string(32,30,chaine,White,Blue);
@@ -65,14 +67,14 @@ void updatejoueur(int idcase){
 }
 
 void verifgagnant(){
-	uint8_t scorebleu;
-	i2c_eeprom_read(0, &scorebleu, 1);
+	t_resultat resultat;
 	// Verification ligne 1
 	if (cases[0] != White && cases[0] == cases[1] && cases[0] == cases[2]){
 		if (cases[0] == Blue){
+			i2c_eeprom_read(0, &resultat, sizeof(resultat));
 			sprintf(chaine,"Joueur Bleu a gagne");
-			scorebleu = scorebleu + 1;
-			i2c_eeprom_write(0, &scorebleu, sizeof(scorebleu));
+			resultat.score_bleu++;
+			i2c_eeprom_write(0, &resultat, sizeof(resultat));
 		} else {
 			sprintf(chaine,"Joueur Rouge a gagne");
 		}
@@ -169,6 +171,7 @@ int main(void)
 {	  
 		int n;
 		int lengthdata;
+		t_resultat resultat;
 		uint8_t data;
 		uint8_t datarecieve;
 		uint32_t slaveAddress;
@@ -187,10 +190,11 @@ int main(void)
 	
 		// Gestion de la mémoire I2C
 		init_i2c_eeprom();
-		data = 0;
-//		i2c_eeprom_write(slaveAddress, &data, lengthdata);
-		i2c_eeprom_read(0, &datarecieve, 1); // slaveaddress a 0 pour le score du joueur bleu
-		// i2c_eeprom_write(0, &data, sizeof(data));
+		resultat.score_bleu = 0;
+		resultat.score_rouge = 0;
+		// i2c_eeprom_read(0, &resultat, sizeof(resultat)); // slaveaddress a 0 pour le score du joueur bleu
+		i2c_eeprom_write(0, &resultat, sizeof(resultat));
+		
 	
 	  // Init(); // init variables globales et pinsel pour IR => à faire
 	
