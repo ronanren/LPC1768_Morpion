@@ -29,8 +29,8 @@ void pin_Configuration()
 {
 		// Gestion du pin connect bloc pour la mémoire par l'I2C0
 		// P0.27 => 01 sur 23:22 et P0.28 => 01 sur 25:24 
-		LPC_PINCON->PINSEL1 |= (1<<22); 
-		LPC_PINCON->PINSEL1 |= (1<<24);
+		LPC_PINCON->PINSEL1 |= (1 << 22); 
+		LPC_PINCON->PINSEL1 |= (1 << 24);
 		// Gestion des boutons poussoirs
 		// LPC_PINCON->PINSEL4 déja à 0 car P2.10 => 00 sur 21:20 et P2.11 => 00 sur 23:22
 		// Initialisation du GPIO
@@ -38,12 +38,8 @@ void pin_Configuration()
 }
 
 void write_lcd(){
-	t_resultat resultat;
-	i2c_eeprom_read(0, &resultat, sizeof(resultat));
-	sprintf(chaine,"Score Bleu : %d", resultat.score_bleu);
-	LCD_write_english_string(32,10,chaine,White,Blue);
-	sprintf(chaine,"Score Rouge : 0");
-	LCD_write_english_string(32,30,chaine,White,Blue);
+	uint8_t resultat_bleu;
+	uint8_t resultat_rouge;
 	dessiner_rect(10,60,74,74,2,1,Black,cases[0]); // |1|2|3|
 	dessiner_rect(84,60,74,74,2,1,Black,cases[1]);  // |4|5|6|
 	dessiner_rect(158,60,74,74,2,1,Black,cases[2]); // |7|8|9|
@@ -53,6 +49,16 @@ void write_lcd(){
 	dessiner_rect(10,208,74,74,2,1,Black,cases[6]);
 	dessiner_rect(84,208,74,74,2,1,Black,cases[7]);
 	dessiner_rect(158,208,74,74,2,1,Black,cases[8]);
+	
+	// Lecture en mémoire I2C resultat_bleu à l'adresse 0 et resultat_bleu à l'adresse 1
+	i2c_read(0, &resultat_bleu, sizeof(resultat_bleu));
+	i2c_read(1, &resultat_rouge, sizeof(resultat_rouge));
+	
+	// Affichage des scores lu dans la mémoire I2C
+	sprintf(chaine,"Score Bleu : %d", resultat_bleu);
+	LCD_write_english_string(32,10,chaine,White,Blue);
+	sprintf(chaine,"Score Rouge : %d", resultat_rouge);
+	LCD_write_english_string(32,30,chaine,White,Blue);
 }
 
 void updatejoueur(int idcase){
@@ -67,16 +73,17 @@ void updatejoueur(int idcase){
 }
 
 void verifgagnant(){
-	t_resultat resultat;
+	uint8_t resultat_bleu;
+	uint8_t resultat_rouge;
+	char gagnant = 'E'; // égalité de base
 	// Verification ligne 1
 	if (cases[0] != White && cases[0] == cases[1] && cases[0] == cases[2]){
 		if (cases[0] == Blue){
-			i2c_eeprom_read(0, &resultat, sizeof(resultat));
 			sprintf(chaine,"Joueur Bleu a gagne");
-			resultat.score_bleu++;
-			i2c_eeprom_write(0, &resultat, sizeof(resultat));
+			gagnant = 'B';
 		} else {
 			sprintf(chaine,"Joueur Rouge a gagne");
+			gagnant = 'R';
 		}
 		lcd_clear(cases[0]);
 		LCD_write_english_string(40,120,chaine,White,cases[0]);
@@ -84,20 +91,26 @@ void verifgagnant(){
 	}
 	// Verification ligne 2
 	if (cases[3] != White && cases[3] == cases[4] && cases[3] == cases[5]){
-		if (cases[3] == Blue)
+		if (cases[3] == Blue){
 			sprintf(chaine,"Joueur Bleu a gagne");
-		else
+			gagnant = 'B';
+		} else {
 			sprintf(chaine,"Joueur Rouge a gagne");
+			gagnant = 'R';
+		}
 		lcd_clear(cases[3]);
 		LCD_write_english_string(40,120,chaine,White,cases[3]);
 		gagne = '1';
 	}
 	// Verification ligne 3
 	if (cases[6] != White && cases[6] == cases[7] && cases[6] == cases[8]){
-		if (cases[6] == Blue)
+		if (cases[6] == Blue){
 			sprintf(chaine,"Joueur Bleu a gagne");
-		else
+			gagnant = 'B';
+		} else {
 			sprintf(chaine,"Joueur Rouge a gagne");
+			gagnant = 'R';
+		}
 		lcd_clear(cases[6]);
 		LCD_write_english_string(40,120,chaine,White,cases[6]);
 		gagne = '1';
@@ -105,30 +118,39 @@ void verifgagnant(){
 	
 	// Verification colonne 1
 	if (cases[0] != White && cases[3] == cases[0] && cases[0] == cases[6]){
-		if (cases[0] == Blue)
+		if (cases[0] == Blue){
 			sprintf(chaine,"Joueur Bleu a gagne");
-		else
+			gagnant = 'B';
+		} else {
 			sprintf(chaine,"Joueur Rouge a gagne");
+			gagnant = 'R';
+		}
 		lcd_clear(cases[0]);
 		LCD_write_english_string(40,120,chaine,White,cases[0]);
 		gagne = '1';
 	}
 	// Verification colonne 2
 	if (cases[1] != White && cases[4] == cases[1] && cases[1] == cases[7]){
-		if (cases[1] == Blue)
+		if (cases[1] == Blue){
 			sprintf(chaine,"Joueur Bleu a gagne");
-		else
+			gagnant = 'B';
+		} else {
 			sprintf(chaine,"Joueur Rouge a gagne");
+			gagnant = 'R';
+		}
 		lcd_clear(cases[1]);
 		LCD_write_english_string(40,120,chaine,White,cases[1]);
 		gagne = '1';
 	}
 	// Verification colonne 3
 	if (cases[2] != White && cases[5] == cases[2] && cases[2] == cases[8]){
-		if (cases[2] == Blue)
+		if (cases[2] == Blue){
 			sprintf(chaine,"Joueur Bleu a gagne");
-		else
+			gagnant = 'B';
+		} else {
 			sprintf(chaine,"Joueur Rouge a gagne");
+			gagnant = 'R';
+		}
 		lcd_clear(cases[2]);
 		LCD_write_english_string(40,120,chaine,White,cases[2]);
 		gagne = '1';
@@ -136,20 +158,26 @@ void verifgagnant(){
 	
 	// Verification diagonale gauche à droite
 	if (cases[0] != White && cases[4] == cases[0] && cases[0] == cases[8]){
-		if (cases[0] == Blue)
+		if (cases[0] == Blue){
 			sprintf(chaine,"Joueur Bleu a gagne");
-		else
+			gagnant = 'B';
+		} else {
 			sprintf(chaine,"Joueur Rouge a gagne");
+			gagnant = 'R';
+		}
 		lcd_clear(cases[0]);
 		LCD_write_english_string(40,120,chaine,White,cases[0]);
 		gagne = '1';
 	}
 	// Verification diagonale droite à gauche
 	if (cases[2] != White && cases[4] == cases[2] && cases[2] == cases[6]){
-		if (cases[2] == Blue)
+		if (cases[2] == Blue){
 			sprintf(chaine,"Joueur Bleu a gagne");
-		else
+			gagnant = 'B';
+		} else {
 			sprintf(chaine,"Joueur Rouge a gagne");
+			gagnant = 'R';
+		}
 		lcd_clear(cases[2]);
 		LCD_write_english_string(40,120,chaine,White,cases[2]);
 		gagne = '1';
@@ -162,6 +190,17 @@ void verifgagnant(){
 		LCD_write_english_string(90,120,chaine,Black,Grey);
 		gagne = '1';
 	}
+	if (gagne == '1'){
+		if (gagnant == 'R'){
+			i2c_read(1, &resultat_rouge, sizeof(resultat_rouge));
+			resultat_rouge++;
+			i2c_write(1, &resultat_rouge, sizeof(resultat_rouge));
+		} else if (gagnant == 'B') {
+			i2c_read(0, &resultat_bleu, sizeof(resultat_bleu));
+			resultat_bleu++;
+			i2c_write(0, &resultat_bleu, sizeof(resultat_bleu));
+		}
+	}
 }
 
 //===========================================================//
@@ -171,7 +210,8 @@ int main(void)
 {	  
 		int n;
 		int lengthdata;
-		t_resultat resultat;
+		uint8_t resultat_bleu;
+		uint8_t resultat_rouge;
 		uint8_t data;
 		uint8_t datarecieve;
 		uint32_t slaveAddress;
@@ -190,19 +230,18 @@ int main(void)
 	
 		// Gestion de la mémoire I2C
 		init_i2c_eeprom();
-		resultat.score_bleu = 0;
-		resultat.score_rouge = 0;
-		// i2c_eeprom_read(0, &resultat, sizeof(resultat)); // slaveaddress a 0 pour le score du joueur bleu
-		i2c_eeprom_write(0, &resultat, sizeof(resultat));
+		resultat_bleu = 0;
+		resultat_rouge = 0;
+		// i2c_write(0, &resultat_bleu, sizeof(resultat_bleu));
+		// i2c_write(1, &resultat_rouge, sizeof(resultat_rouge));
 		
 	
 	  // Init(); // init variables globales et pinsel pour IR => à faire
-	
 	  lcd_Initializtion(); // init pinsel ecran et init LCD
 		timer1_init();
 		// affichage sur l'écran de 6 carrés de couleur blanche et de deux chaine de caractères pour le score du joueur bleu et rouge
 		write_lcd();
-		
+
 	  touch_init(); // init pinsel tactile et init tactile; à ne laisser que si vous utilisez le tactile
 	  
     while(1){

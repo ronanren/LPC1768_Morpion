@@ -12,9 +12,4 @@ struct datai2c {
 	uint8_t data;
 };
 
-typedef struct {
-	char score_bleu;
-	char score_rouge;
-} t_resultat;
-
 #endif
