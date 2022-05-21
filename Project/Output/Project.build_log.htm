@@ -66,33 +66,33 @@ compiling main.c...
    
 ..\User\constantes.h(15): warning:  #1-D: last line of file ends without a newline
   #endif
-..\User\global.h(14): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
 ..\User\memoire.h(4): warning:  #1295-D: Deprecated declaration init_i2c_eeprom - give arg types
   void init_i2c_eeprom();
 ..\User\memoire.h(6): warning:  #1-D: last line of file ends without a newline
-  void i2c_read(uint16_t addr, uint8_t * data, int length);
+  void i2c_eeprom_write(uint16_t addr, uint8_t * data, int length);
 ..\User\timer1.h(3): warning:  #1-D: last line of file ends without a newline
   void timer1_init();
 ..\User\timer1.h(3): warning:  #1295-D: Deprecated declaration timer1_init - give arg types
   void timer1_init();
-..\User\global.h(14): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
-..\User\globaldec.h(16): warning:  #1-D: last line of file ends without a newline
+..\User\globaldec.h(17): warning:  #1-D: last line of file ends without a newline
   char gagne;
-..\User\main.c(160): warning:  #177-D: variable "n"  was declared but never referenced
+..\User\main.c(168): warning:  #177-D: variable "n"  was declared but never referenced
                 int n;
-..\User\main.c(161): warning:  #177-D: variable "lengthdata"  was declared but never referenced
+..\User\main.c(169): warning:  #177-D: variable "lengthdata"  was declared but never referenced
                 int lengthdata;
-..\User\main.c(162): warning:  #550-D: variable "resultat_bleu"  was set but never used
+..\User\main.c(170): warning:  #177-D: variable "resultat_bleu"  was declared but never referenced
                 uint8_t resultat_bleu;
-..\User\main.c(163): warning:  #550-D: variable "resultat_rouge"  was set but never used
+..\User\main.c(171): warning:  #177-D: variable "resultat_rouge"  was declared but never referenced
                 uint8_t resultat_rouge;
-..\User\main.c(164): warning:  #177-D: variable "data"  was declared but never referenced
+..\User\main.c(172): warning:  #177-D: variable "data"  was declared but never referenced
                 uint8_t data;
-..\User\main.c(165): warning:  #177-D: variable "datarecieve"  was declared but never referenced
+..\User\main.c(173): warning:  #177-D: variable "datarecieve"  was declared but never referenced
                 uint8_t datarecieve;
-..\User\main.c(166): warning:  #177-D: variable "slaveAddress"  was declared but never referenced
+..\User\main.c(174): warning:  #177-D: variable "slaveAddress"  was declared but never referenced
                 uint32_t slaveAddress;
 ..\User\main.c: 16 warnings, 0 errors
 compiling ili_lcd_general.c...
@@ -102,7 +102,7 @@ compiling affichagelcd.c...
 compiling touch_panel.c...
 ..\User\constantes.h(15): warning:  #1-D: last line of file ends without a newline
   #endif
-..\User\global.h(14): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
 ..\User\touch\touch_panel.c(17): warning:  #177-D: variable "touch_data_tx"  was declared but never referenced
       uint8_t touch_data_tx[BUF_SIZE];
@@ -110,19 +110,19 @@ compiling touch_panel.c...
 compiling memoire.c...
 ..\User\constantes.h(15): warning:  #1-D: last line of file ends without a newline
   #endif
-..\User\global.h(14): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
 ..\User\memoire.h(4): warning:  #1295-D: Deprecated declaration init_i2c_eeprom - give arg types
   void init_i2c_eeprom();
 ..\User\memoire.h(6): warning:  #1-D: last line of file ends without a newline
-  void i2c_read(uint16_t addr, uint8_t * data, int length);
+  void i2c_eeprom_write(uint16_t addr, uint8_t * data, int length);
 ..\User\memoire.c(58): warning:  #1-D: last line of file ends without a newline
   }
 ..\User\memoire.c: 5 warnings, 0 errors
 compiling timer1.c...
 ..\User\constantes.h(15): warning:  #1-D: last line of file ends without a newline
   #endif
-..\User\global.h(14): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
 ..\User\timer1.h(3): warning:  #1-D: last line of file ends without a newline
   void timer1_init();
@@ -132,11 +132,11 @@ compiling timer1.c...
    
 ..\User\timer1.c(14): warning:  #177-D: variable "cpt_LCD"  was declared but never referenced
                 int cpt_LCD = 0;
-..\User\timer1.c(62): warning:  #1-D: last line of file ends without a newline
+..\User\timer1.c(67): warning:  #1-D: last line of file ends without a newline
   }
 ..\User\timer1.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=16920 RO-data=1792 RW-data=36 ZI-data=732  
+Program Size: Code=16992 RO-data=1792 RW-data=36 ZI-data=732  
 FromELF: creating hex file...
 ".\Output\Project.axf" - 0 Error(s), 41 Warning(s).
 

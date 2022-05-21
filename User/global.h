@@ -8,6 +8,7 @@ extern uint16_t touch_x, touch_y;
 extern uint8_t dataread;
 extern int cpt_LCD;
 extern char flagtacheclavier;
+extern char flagbouton;
 extern char boutonPush;
 extern unsigned short cases[9];
 extern unsigned short lastjoueur;

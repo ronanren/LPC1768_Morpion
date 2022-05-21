@@ -24,7 +24,7 @@
 
 // Morpion
 
-// Initialise les broches pour la gestion de la mémoire par l’I2C0 et les boutons poussoirs
+// Initialise les broches pour la gestion de la mémoire par l’I2C0 et le bouton poussoir KEY1
 void pin_Configuration()
 {
 		// Gestion du pin connect bloc pour la mémoire par l'I2C0
@@ -32,15 +32,15 @@ void pin_Configuration()
 		LPC_PINCON->PINSEL1 |= (1 << 22); 
 		LPC_PINCON->PINSEL1 |= (1 << 24);
 		// Gestion des boutons poussoirs
-		// LPC_PINCON->PINSEL4 déja à 0 car P2.10 => 00 sur 21:20 et P2.11 => 00 sur 23:22
+		// LPC_PINCON->PINSEL4 déja à 0 car P2.10 => 00 sur 21:20 pour le key0 et P2.11 => 00 sur 23:22 pour le key1
 		// Initialisation du GPIO
-		GPIO_SetDir(2, (1 << 10)|(1 << 11), 0); // Port 2 en input pour changer la direction avec (1 << 10)|(1 << 11)
+		GPIO_SetDir(2, (1 << 10), 0); // Port 2 en input pour changer la direction avec (1 << 10) avec 0 en input
 }
 
 void write_lcd(){
 	uint8_t resultat_bleu;
 	uint8_t resultat_rouge;
-	dessiner_rect(10,60,74,74,2,1,Black,cases[0]); // |1|2|3|
+	dessiner_rect(10,60,74,74,2,1,Black,cases[0]); //  |1|2|3|
 	dessiner_rect(84,60,74,74,2,1,Black,cases[1]);  // |4|5|6|
 	dessiner_rect(158,60,74,74,2,1,Black,cases[2]); // |7|8|9|
 	dessiner_rect(10,134,74,74,2,1,Black,cases[3]);
@@ -50,17 +50,18 @@ void write_lcd(){
 	dessiner_rect(84,208,74,74,2,1,Black,cases[7]);
 	dessiner_rect(158,208,74,74,2,1,Black,cases[8]);
 	
-	// Lecture en mémoire I2C resultat_bleu à l'adresse 0 et resultat_bleu à l'adresse 1
+	// Lecture en mémoire I2C du resultat_bleu à l'adresse 0 et du resultat_bleu à l'adresse 1
 	i2c_eeprom_read(0, &resultat_bleu, sizeof(resultat_bleu));
 	i2c_eeprom_read(1, &resultat_rouge, sizeof(resultat_rouge));
 	
 	// Affichage des scores lu dans la mémoire I2C
-	sprintf(chaine,"Score Bleu : %d", resultat_bleu);
+	sprintf(chaine,"Score Bleu : %d  ", resultat_bleu);
 	LCD_write_english_string(32,10,chaine,White,Blue);
-	sprintf(chaine,"Score Rouge : %d", resultat_rouge);
+	sprintf(chaine,"Score Rouge : %d  ", resultat_rouge);
 	LCD_write_english_string(32,30,chaine,White,Blue);
 }
 
+// Change la couleur du joueur de façon alternée
 void updatejoueur(int idcase){
 	if (lastjoueur == Blue && cases[idcase] == White){
 			cases[idcase] = Red;
@@ -72,6 +73,16 @@ void updatejoueur(int idcase){
 	}
 }
 
+// Remettre à 0 les scores au sein de la mémoire
+void reset_score(){
+	uint8_t resultat_bleu = 0;
+  uint8_t resultat_rouge = 0;
+	i2c_eeprom_write(0, &resultat_bleu, sizeof(resultat_bleu));
+	i2c_eeprom_write(1, &resultat_rouge, sizeof(resultat_rouge));
+	write_lcd();
+}
+
+// Vérifier si un joueur a gagné la partie
 void verifgagnant(){
 	uint8_t resultat_bleu;
 	uint8_t resultat_rouge;
@@ -116,7 +127,6 @@ void verifgagnant(){
 		LCD_write_english_string(40,120,chaine,White,cases[7]);
 		gagne = '1';
 	}
-	
 	if ((cases[2] != White && cases[5] == cases[2] && cases[2] == cases[8]) // Verification colonne 3
 			|| (cases[2] != White && cases[4] == cases[2] && cases[2] == cases[6])){ // Verification diagonale droite à gauche
 		if (cases[2] == Blue){
@@ -130,7 +140,6 @@ void verifgagnant(){
 		LCD_write_english_string(40,120,chaine,White,cases[2]);
 		gagne = '1';
 	}
-	
 	// Verification égalité
 	if (gagne == '0' && cases[0] != White && cases[1] != White && cases[2] != White && cases[3] != White && cases[4] != White && cases[5] != White && cases[6] != White && cases[7] != White && cases[8] != White){
 		sprintf(chaine,"Egalite");
@@ -181,8 +190,8 @@ int main(void)
 		init_i2c_eeprom();
 		// resultat_bleu = 0;
 		// resultat_rouge = 0;
-		// i2c_write(0, &resultat_bleu, sizeof(resultat_bleu));
-		// i2c_write(1, &resultat_rouge, sizeof(resultat_rouge));
+		// i2c_eeprom_write(0, &resultat_bleu, sizeof(resultat_bleu));
+		// i2c_eeprom_write(1, &resultat_rouge, sizeof(resultat_rouge));
 		
 	
 	  // Init(); // init variables globales et pinsel pour IR => à faire
@@ -194,6 +203,10 @@ int main(void)
 	  touch_init(); // init pinsel tactile et init tactile; à ne laisser que si vous utilisez le tactile
 	  
     while(1){
+			if (flagbouton == '1'){
+				flagbouton = '0';
+				reset_score();
+			}
 			if (flagtacheclavier == '1'){
 				flagtacheclavier = '0';
 				touch_read();

@@ -53,8 +53,13 @@ void TIMER1_IRQHandler(void){
 	cpt_LCD++; // gestion d'un compteur pour scruter le port P0.19 tout les 100ms
 	if (cpt_LCD == 10){
 		cpt_LCD=0;
-		if (( ((LPC_GPIO0->FIOPIN)>>19) & (0x01)) == 0){
+		// Vérification si il y a un touché sur l'écran tactile
+		if ((((LPC_GPIO0->FIOPIN) >> 19) & (0x01)) == 0){
 			flagtacheclavier = '1';
+		}
+		// Vérification d'un appui sur le bouton KEY1 avec le GPIO
+		if (((LPC_GPIO2->FIOPIN >> 11) & (0x01)) == 0){
+			flagbouton = '1';
 		}
 	}
 	
