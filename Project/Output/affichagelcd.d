@@ -13,3 +13,8 @@
 .\output\affichagelcd.o: ..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_libcfg_default.h
 .\output\affichagelcd.o: ..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_pinsel.h
 .\output\affichagelcd.o: ..\User\touch/ili_lcd_general.h
+.\output\affichagelcd.o: ..\User\global.h
+.\output\affichagelcd.o: ..\User\constantes.h
+.\output\affichagelcd.o: ..\User\memoire.h
+.\output\affichagelcd.o: ..\User\global.h
+.\output\affichagelcd.o: ..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_i2c.h

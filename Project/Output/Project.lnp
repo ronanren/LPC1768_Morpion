@@ -18,6 +18,8 @@
 ".\output\touch_panel.o"
 ".\output\memoire.o"
 ".\output\timer1.o"
+".\output\pin.o"
+".\output\morpion.o"
 --strict --scatter ".\Output\Project.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

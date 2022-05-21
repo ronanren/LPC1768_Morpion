@@ -1,0 +1,17 @@
+.\output\morpion.o: ..\User\morpion.c
+.\output\morpion.o: ..\User\morpion.h
+.\output\morpion.o: ..\User\memoire.h
+.\output\morpion.o: ..\User\global.h
+.\output\morpion.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\morpion.o: ..\User\constantes.h
+.\output\morpion.o: ..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_i2c.h
+.\output\morpion.o: ..\Libraries\CM3\DeviceSupport\NXP\LPC17xx\LPC17xx.h
+.\output\morpion.o: ..\Libraries\CM3\CoreSupport\core_cm3.h
+.\output\morpion.o: ..\Libraries\CM3\CoreSupport\core_cmInstr.h
+.\output\morpion.o: ..\Libraries\CM3\CoreSupport\core_cmFunc.h
+.\output\morpion.o: ..\Libraries\CM3\DeviceSupport\NXP\LPC17xx\system_LPC17xx.h
+.\output\morpion.o: ..\Libraries\LCP1768_StdPeriph_Driver\include\lpc_types.h
+.\output\morpion.o: ..\User\global.h
+.\output\morpion.o: ..\User\affichagelcd.h
+.\output\morpion.o: ..\User\touch/ili_lcd_general.h
+.\output\morpion.o: ..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_gpio.h

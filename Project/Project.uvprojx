@@ -508,6 +508,26 @@
               <FileType>5</FileType>
               <FilePath>..\User\timer1.h</FilePath>
             </File>
+            <File>
+              <FileName>pin.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\pin.c</FilePath>
+            </File>
+            <File>
+              <FileName>pin.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\pin.h</FilePath>
+            </File>
+            <File>
+              <FileName>morpion.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\morpion.c</FilePath>
+            </File>
+            <File>
+              <FileName>morpion.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\morpion.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

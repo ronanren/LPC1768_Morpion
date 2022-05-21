@@ -20,6 +20,8 @@
 .\output\main.o: ..\User\constantes.h
 .\output\main.o: ..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_i2c.h
 .\output\main.o: ..\User\timer1.h
+.\output\main.o: ..\User\pin.h
+.\output\main.o: ..\User\morpion.h
 .\output\main.o: ..\User\global.h
 .\output\main.o: ..\User\globaldec.h
 .\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

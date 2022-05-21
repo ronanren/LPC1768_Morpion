@@ -3,4 +3,4 @@
 -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include
 -IC:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.7.0\Device\Include
 -D__UVISION_VERSION="535" -D_RTE_ -DLPC175x_6x -D_RTE_
--o .\output\core_cm3.o --omf_browse .\output\core_cm3.crf --depend .\output\core_cm3.d "..\Libraries\CM3\CoreSupport\core_cm3.c"
+-o .\output\morpion.o --omf_browse .\output\morpion.crf --depend .\output\morpion.d "..\User\morpion.c"

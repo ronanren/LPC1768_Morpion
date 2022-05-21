@@ -22,5 +22,7 @@ SET CPU_CLOCK=0x00B71B00
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\output\touch_panel.__i"
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\output\memoire.__i"
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\output\timer1.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\output\pin.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\output\morpion.__i"
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmLink" --Via ".\Output\Project.lnp"
 "C:\Keil_v5\ARM\ARMCC\Bin\fromelf.exe" ".\Output\Project.axf" --i32combined --output ".\Output\Project.hex"
