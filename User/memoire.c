@@ -6,7 +6,7 @@ void init_i2c_eeprom(){
 		I2C_Cmd(LPC_I2C0, ENABLE); // Autoriser les échanges I2C0
 }
 
-void i2c_write(uint16_t addr, uint8_t *data, int length)
+void i2c_eeprom_write(uint16_t addr, uint8_t *data, int length)
 {
 	int i;
 	uint8_t data_to_write[255];
@@ -36,7 +36,7 @@ void i2c_write(uint16_t addr, uint8_t *data, int length)
 	I2C_MasterTransferData(LPC_I2C0,&master,I2C_TRANSFER_POLLING);
 }
 
-void i2c_read(uint16_t addr, uint8_t * data, int length)
+void i2c_eeprom_read(uint16_t addr, uint8_t * data, int length)
 {
 	I2C_M_SETUP_Type master; // Master I2C
 	uint8_t addr_ligne = addr & 0xFF;
