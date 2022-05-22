@@ -3,7 +3,7 @@
 //===========================================================//
 // File                : main.c
 // Hardware Environment: Open1768	
-// Build Environment   : Keil µVision
+// Build Environment   : Keil ï¿½Vision
 //===========================================================//
 
 #include "lpc17xx_gpio.h"
@@ -21,7 +21,7 @@
 #include "morpion.h"
 
 #include "global.h"
-#include "globaldec.h" // fichier contenant toutes les déclarations de variables globales
+#include "globaldec.h" // fichier contenant toutes les dï¿½clarations de variables globales
 #include <stdio.h>
 
 // Morpion
@@ -31,13 +31,8 @@
 //===========================================================//
 int main(void)
 {	  
-		int n;
-		int lengthdata;
 		uint8_t resultat_bleu;
 		uint8_t resultat_rouge;
-		uint8_t data;
-		uint8_t datarecieve;
-		uint32_t slaveAddress;
 		pin_Configuration();
 		lastjoueur = Red;
 		cases[0] = White;
@@ -51,21 +46,19 @@ int main(void)
 		cases[8] = White;
 		gagne = '0';
 	
-		// Gestion de la mémoire I2C
+		// Gestion de la mÃ©moire I2C
 		init_i2c_eeprom();
 		// resultat_bleu = 0;
 		// resultat_rouge = 0;
 		// i2c_eeprom_write(0, &resultat_bleu, sizeof(resultat_bleu));
 		// i2c_eeprom_write(1, &resultat_rouge, sizeof(resultat_rouge));
 		
-	
-	  // Init(); // init variables globales et pinsel pour IR => à faire
 	  lcd_Initializtion(); // init pinsel ecran et init LCD
 		timer1_init();
-		// affichage sur l'écran de 6 carrés de couleur blanche et de deux chaine de caractères pour le score du joueur bleu et rouge
+		// affichage sur l'Ã©cran de 6 carrÃ©s de couleur blanche et de deux chaine de caractÃ¨res pour le score du joueur bleu et rouge
 		write_lcd();
 
-	  touch_init(); // init pinsel tactile et init tactile; à ne laisser que si vous utilisez le tactile
+	  touch_init(); // init pinsel tactile et init tactile
 	  
     while(1){
 			if (flagbouton == '1'){

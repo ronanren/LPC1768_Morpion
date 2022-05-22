@@ -22,7 +22,7 @@ Dialog DLL:      TARMP1.DLL V1.26.0.0
  
 <h2>Project:</h2>
 C:\Users\rrenoux\Documents\LPC1768_Morpion\Project\Project.uvprojx
-Project File Date:  05/21/2022
+Project File Date:  05/22/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -66,9 +66,9 @@ compiling main.c...
    void write_lcd();
 ..\User\affichagelcd.h(9): warning:  #1-D: last line of file ends without a newline
    
-..\User\constantes.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\constantes.h(5): warning:  #1-D: last line of file ends without a newline
   #endif
-..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
 ..\User\memoire.h(4): warning:  #1295-D: Deprecated declaration init_i2c_eeprom - give arg types
   void init_i2c_eeprom();
@@ -88,34 +88,24 @@ compiling main.c...
   void verifgagnant();
 ..\User\morpion.h(3): warning:  #1295-D: Deprecated declaration verifgagnant - give arg types
   void verifgagnant();
-..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
-..\User\globaldec.h(17): warning:  #1-D: last line of file ends without a newline
+..\User\globaldec.h(15): warning:  #1-D: last line of file ends without a newline
   char gagne;
-..\User\main.c(34): warning:  #177-D: variable "n"  was declared but never referenced
-                int n;
-..\User\main.c(35): warning:  #177-D: variable "lengthdata"  was declared but never referenced
-                int lengthdata;
-..\User\main.c(36): warning:  #177-D: variable "resultat_bleu"  was declared but never referenced
+..\User\main.c(34): warning:  #177-D: variable "resultat_bleu"  was declared but never referenced
                 uint8_t resultat_bleu;
-..\User\main.c(37): warning:  #177-D: variable "resultat_rouge"  was declared but never referenced
+..\User\main.c(35): warning:  #177-D: variable "resultat_rouge"  was declared but never referenced
                 uint8_t resultat_rouge;
-..\User\main.c(38): warning:  #177-D: variable "data"  was declared but never referenced
-                uint8_t data;
-..\User\main.c(39): warning:  #177-D: variable "datarecieve"  was declared but never referenced
-                uint8_t datarecieve;
-..\User\main.c(40): warning:  #177-D: variable "slaveAddress"  was declared but never referenced
-                uint32_t slaveAddress;
-..\User\main.c: 22 warnings, 0 errors
+..\User\main.c: 17 warnings, 0 errors
 compiling ili_lcd_general.c...
 compiling lcd_api.c...
 compiling english_16x8.c...
 compiling affichagelcd.c...
-..\User\constantes.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\constantes.h(5): warning:  #1-D: last line of file ends without a newline
   #endif
-..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
-..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
 ..\User\memoire.h(4): warning:  #1295-D: Deprecated declaration init_i2c_eeprom - give arg types
   void init_i2c_eeprom();
@@ -125,29 +115,29 @@ compiling affichagelcd.c...
         sprintf(chaine,"Score Bleu : %d  ", resultat_bleu);
 ..\User\affichagelcd.c: 6 warnings, 0 errors
 compiling touch_panel.c...
-..\User\constantes.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\constantes.h(5): warning:  #1-D: last line of file ends without a newline
   #endif
-..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
 ..\User\touch\touch_panel.c(17): warning:  #177-D: variable "touch_data_tx"  was declared but never referenced
       uint8_t touch_data_tx[BUF_SIZE];
 ..\User\touch\touch_panel.c: 3 warnings, 0 errors
 compiling memoire.c...
-..\User\constantes.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\constantes.h(5): warning:  #1-D: last line of file ends without a newline
   #endif
-..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
 ..\User\memoire.h(4): warning:  #1295-D: Deprecated declaration init_i2c_eeprom - give arg types
   void init_i2c_eeprom();
 ..\User\memoire.h(6): warning:  #1-D: last line of file ends without a newline
   void i2c_eeprom_write(uint16_t addr, uint8_t * data, int length);
-..\User\memoire.c(58): warning:  #1-D: last line of file ends without a newline
+..\User\memoire.c(54): warning:  #1-D: last line of file ends without a newline
   }
 ..\User\memoire.c: 5 warnings, 0 errors
 compiling timer1.c...
-..\User\constantes.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\constantes.h(5): warning:  #1-D: last line of file ends without a newline
   #endif
-..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
 ..\User\timer1.h(3): warning:  #1-D: last line of file ends without a newline
   void timer1_init();
@@ -177,15 +167,15 @@ compiling morpion.c...
   void verifgagnant();
 ..\User\morpion.h(3): warning:  #1295-D: Deprecated declaration verifgagnant - give arg types
   void verifgagnant();
-..\User\constantes.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\constantes.h(5): warning:  #1-D: last line of file ends without a newline
   #endif
-..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
 ..\User\memoire.h(4): warning:  #1295-D: Deprecated declaration init_i2c_eeprom - give arg types
   void init_i2c_eeprom();
 ..\User\memoire.h(6): warning:  #1-D: last line of file ends without a newline
   void i2c_eeprom_write(uint16_t addr, uint8_t * data, int length);
-..\User\global.h(15): warning:  #1-D: last line of file ends without a newline
+..\User\global.h(13): warning:  #1-D: last line of file ends without a newline
   extern char gagne;
 ..\User\affichagelcd.h(8): warning:  #1295-D: Deprecated declaration write_lcd - give arg types
    void write_lcd();
@@ -223,9 +213,9 @@ compiling morpion.c...
   }
 ..\User\morpion.c: 25 warnings, 0 errors
 linking...
-Program Size: Code=16996 RO-data=1792 RW-data=36 ZI-data=732  
+Program Size: Code=16988 RO-data=1792 RW-data=32 ZI-data=728  
 FromELF: creating hex file...
-".\Output\Project.axf" - 0 Error(s), 82 Warning(s).
+".\Output\Project.axf" - 0 Error(s), 77 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -248,7 +238,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.0.1
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>

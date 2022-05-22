@@ -10,10 +10,10 @@ void i2c_eeprom_write(uint16_t addr, uint8_t *data, int length)
 {
 	int i;
 	uint8_t data_to_write[255];
-	I2C_M_SETUP_Type master; // Master I2C
+	I2C_M_SETUP_Type config; // config I2C
 	
-	// 0b0101 | addr >> 8 pour ne récupérer que les 3 bits de poids fort de l'adresse ( bits de colonnes de la mémoire)
-	master.sl_addr7bit = 0x50 | (addr >> 8); // 
+	// 0101 | addr >> 8 pour ne récupérer que les 3 bits de poids fort de l'adresse de mémoire
+	config.sl_addr7bit = 0x50 | (addr >> 8); 
 
 	data_to_write[0] = ((addr) & (0xFF)); // Récupération des lignes de la mémoire à transmettre dans les données
 	for(i=0; i < length; i++)
@@ -21,38 +21,34 @@ void i2c_eeprom_write(uint16_t addr, uint8_t *data, int length)
 		data_to_write[i+1] = data[i]; // Récupération des données à écrire
 	}
 	
-	master.tx_data = data_to_write; // Données à écrire
-	master.tx_count = 0; // Compteur des données à transmettre à 0, car processus non commencé
-	master.tx_length = length+1; // Taille de l'adresse + données
-	// Non utilisé, car utile pour la lecture
-	master.rx_data = NULL;
-	master.rx_length = 0;
-	master.rx_count = 0;
+	config.tx_data = data_to_write; // Données à écrire
+	config.tx_count = 0; // Compteur des données à transmettre à 0
+	config.tx_length = length + 1; // Taille de l'adresse + les données
 	// Nombre de retransmission à zéro de base et maximum 3
-	master.retransmissions_max = 3;
-	master.retransmissions_count = 0;
-	master.status = 0;
+	config.retransmissions_max = 3;
+	config.retransmissions_count = 0;
+	config.status = 0;
 	
-	I2C_MasterTransferData(LPC_I2C0,&master,I2C_TRANSFER_POLLING);
+	I2C_MasterTransferData(LPC_I2C0, &config,I2C_TRANSFER_POLLING);
 }
 
-void i2c_eeprom_read(uint16_t addr, uint8_t * data, int length)
+void i2c_eeprom_read(uint16_t addr, uint8_t *data, int length)
 {
-	I2C_M_SETUP_Type master; // Master I2C
+	I2C_M_SETUP_Type config; // config I2C
 	uint8_t addr_ligne = addr & 0xFF;
-		master.sl_addr7bit = 0x50 | (addr >> 8);
-			
-		master.tx_data = &addr_ligne;
-		master.tx_count = 0;
-		master.tx_length = 1;
+	config.sl_addr7bit = 0x50 | (addr >> 8); // 0101 | addr >> 8 pour ne récupérer que les 3 bits de poids fort de l'adresse de mémoire
 		
-		master.rx_data = data;
-		master.rx_length = length;
+	config.tx_data = &addr_ligne;
+	config.tx_count = 0;
+	config.tx_length = 1;
+	
+	config.rx_data = data;
+	config.rx_length = length;
 
-		// Nombre de retransmission à zéro de base et maximum 3
-		master.retransmissions_max = 3;
-		master.retransmissions_count = 0;
-		master.status = 0;
-		
-		I2C_MasterTransferData(LPC_I2C0,&master,I2C_TRANSFER_POLLING);		
+	// Nombre de retransmission à zéro de base et maximum 3
+	config.retransmissions_max = 3;
+	config.retransmissions_count = 0;
+	config.status = 0;
+	
+	I2C_MasterTransferData(LPC_I2C0, &config, I2C_TRANSFER_POLLING);
 }

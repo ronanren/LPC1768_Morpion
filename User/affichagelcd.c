@@ -12,11 +12,11 @@ void dessiner_ligne(unsigned int x, unsigned int y, unsigned int l,unsigned int 
 	{
 		for(j=y;j<=y+l;j++)
 		{
-			lcd_SetCursor(x,j);//on place le curseur à la bonne position
+			lcd_SetCursor(x,j);//on place le curseur ï¿½ la bonne position
 			rw_data_prepare();
 			for(i=0;i<=e;i++)
 			{
-				write_data(color);//on trace un point et on passe à la position suivante
+				write_data(color);//on trace un point et on passe ï¿½ la position suivante
 			}
 		}
 	}
@@ -24,11 +24,11 @@ void dessiner_ligne(unsigned int x, unsigned int y, unsigned int l,unsigned int 
 	{
 		for(j=y;j<=y+e;j++)
 		{
-			lcd_SetCursor(x,j);//on place le curseur à la bonne position
+			lcd_SetCursor(x,j);//on place le curseur ï¿½ la bonne position
 			rw_data_prepare();
 			for(i=0;i<=l;i++)
 			{
-				write_data(color);//on trace un point et on passe à la position suivante
+				write_data(color);//on trace un point et on passe ï¿½ la position suivante
 			}
 		}
 	}
@@ -62,11 +62,11 @@ void write_lcd(){
 	dessiner_rect(84,208,74,74,2,1,Black,cases[7]);
 	dessiner_rect(158,208,74,74,2,1,Black,cases[8]);
 	
-	// Lecture en mémoire I2C du resultat_bleu à l'adresse 0 et du resultat_bleu à l'adresse 1
+	// Lecture en mÃ©moire I2C du resultat_bleu Ã  l'adresse 0 et du resultat_bleu Ã  l'adresse 1
 	i2c_eeprom_read(0, &resultat_bleu, sizeof(resultat_bleu));
 	i2c_eeprom_read(1, &resultat_rouge, sizeof(resultat_rouge));
 	
-	// Affichage des scores lu dans la mémoire I2C
+	// Affichage des scores lu dans la mÃ©moire I2C
 	sprintf(chaine,"Score Bleu : %d  ", resultat_bleu);
 	LCD_write_english_string(32,10,chaine,White,Blue);
 	sprintf(chaine,"Score Rouge : %d  ", resultat_rouge);

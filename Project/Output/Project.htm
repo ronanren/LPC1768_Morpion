@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Output\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Output\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sat May 21 14:40:42 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sun May 22 17:07:19 2022
 <BR><P>
 <H3>Maximum Stack Usage =        392 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1154,7 +1154,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[c6]"></a>i2c_eeprom_write</STRONG> (Thumb, 86 bytes, Stack size 320 bytes, memoire.o(.text))
+<P><STRONG><a name="[c6]"></a>i2c_eeprom_write</STRONG> (Thumb, 78 bytes, Stack size 320 bytes, memoire.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 368<LI>Call Chain = i2c_eeprom_write &rArr; I2C_MasterTransferData &rArr; I2C_IntCmd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_MasterTransferData
@@ -1233,8 +1233,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 136 + Unknown Stack Size
 <LI>Call Chain = __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
+<BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touch_debug
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_lcd

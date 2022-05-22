@@ -9,7 +9,7 @@
 #include "affichagelcd.h"
 #include "touch\ili_lcd_general.h"
 
-// initialisation d'un timer1 qui va partir en interruption toute les 10ms avec une précision de 500us
+// Initialisation d'un timer1 qui va partir en interruption toute les 10ms avec une prï¿½cision de 500us
 void timer1_init(){
 		int cpt_LCD = 0;
 	
@@ -31,12 +31,12 @@ void timer1_init(){
 		PINSEL_ConfigPin(&maconfig);
 	
 		// remplissage pour choisir le mode timer et la precision
-		maconfigtimer.PrescaleOption = TIM_PRESCALE_USVAL; // l'unité du prescaler est en ms
-    maconfigtimer.PrescaleValue = 500; // On met le prescaler à 500us
+		maconfigtimer.PrescaleOption = TIM_PRESCALE_USVAL; // l'unitï¿½ du prescaler est en ms
+    maconfigtimer.PrescaleValue = 500; // On met le prescaler ï¿½ 500us
 		// appel de la fonction qui va initialiser les registres
 		TIM_Init(LPC_TIM1, TIM_TIMER_MODE, &maconfigtimer);
 	
-		// remplissage pour choisir les actions quand ça match
+		// remplissage pour choisir les actions quand ï¿½a match
 		maconfigmatch.ExtMatchOutputType = TIM_EXTMATCH_NOTHING; // inverse la sortie a chaque match
 		maconfigmatch.IntOnMatch = ENABLE; // Interruption generee quand ca match
 		maconfigmatch.StopOnMatch = DISABLE;
@@ -53,11 +53,11 @@ void TIMER1_IRQHandler(void){
 	cpt_LCD++; // gestion d'un compteur pour scruter le port P0.19 tout les 100ms
 	if (cpt_LCD == 10){
 		cpt_LCD=0;
-		// Vérification si il y a un touché sur l'écran tactile
+		// VÃ©rification si il y a un touchï¿½ sur l'ï¿½cran tactile
 		if ((((LPC_GPIO0->FIOPIN) >> 19) & (0x01)) == 0){
 			flagtacheclavier = '1';
 		}
-		// Vérification d'un appui sur le bouton KEY1 avec le GPIO
+		// VÃ©rification d'un appui sur le bouton KEY1 avec le GPIO
 		if (((LPC_GPIO2->FIOPIN >> 11) & (0x01)) == 0){
 			flagbouton = '1';
 		}
