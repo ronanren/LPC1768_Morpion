@@ -96,7 +96,7 @@ Fonction permettant d'afficher les 9 carrés du morpion et d'afficher les scores
 touch_init(); // init pinsel tactile et init tactile
 ```
 
-Boucle infini qui permet de gérér les événements du jeu. 
+Boucle infini qui permet de gérér les événements du jeu :
 * Lorsqu'on clique sur le bouton KEY1 sur la carte mère, la fonction reset_score(); est appelée pour mettre à 0 les scores des joueurs au sein de la mémoire I2C.
 * Lorsqu'on appuie sur l'écran, on vérifie si l'appui est sur une case vide à coché et on vérifie le gagnant
 
@@ -165,4 +165,26 @@ while(1){
 <a name="Utilisation"></a>
 # 2. Utilisation
 
-sometext
+La configuration de la carte est comme ci-dessus (mémoire I2C branché en bas à gauche et écran tactile).
+
+<p align="center">
+  <img src="https://github.com/ronanren/LPC1768_Morpion/blob/main/Images/carte_LPC1768.jpg?raw=true" width="500"/>
+</p>
+
+Lorsque le programme démarre, nous arrivons sur cette interface avec le score du joueur bleu et du joueur rouge en haut de l'écran puis les 9 cases du morpion.
+
+<p align="center">
+  <img src="https://github.com/ronanren/LPC1768_Morpion/blob/main/Images/ecran_tactile_morpion.jpg?raw=true" width="500"/>
+</p>
+
+Le joueur qui démarre à la couleur bleu et vous pouvez cliquer à tour de rôle sur les cases pour réussir à gagner contre votre adversaire.
+
+Lorsque qu'un joueur à gagné, la partie s'arrête et un écran de la couleur du gagnant s'affiche, vous pouvez cliquer dessus pour refaire une partie.
+
+De plus, pour remettre à 0 les scores des joueurs qui sont stockés sur la mémoire I2C, vous pouvez cliquer sur le bouton KEY1.
+
+Pour finir, voici une démo en images.
+
+<p align="center">
+<img src="https://github.com/ronanren/LPC1768_Morpion/blob/main/Images/presentation.gif?raw=true" width="350"/>
+<p align="center">
