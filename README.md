@@ -173,7 +173,7 @@ while(1){
 <a name="Utilisation"></a>
 # 2. Utilisation
 
-La configuration de la carte est comme ci-dessus (mémoire I2C branché en bas à gauche et écran tactile).
+La configuration de la carte est comme ci-dessous (mémoire I2C branché en bas à gauche et écran tactile).
 
 <p align="center">
   <img src="https://github.com/ronanren/LPC1768_Morpion/blob/main/Images/carte_LPC1768.jpg?raw=true" width="500"/>
