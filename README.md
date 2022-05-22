@@ -4,6 +4,7 @@
     * [1.1. Déclaration et sens des variables](#variables)
     * [1.2 Déclaration des fonctions](#fonctions)
     * [1.3 Traitement du programme principale](#traitement)
+    * [1.4 Schéma du fonctionnement du programme](#schema)
 * [2. Utilisation](#Utilisation)
 
 <a name="morpion"></a>
@@ -161,6 +162,13 @@ while(1){
     }
 }
 ```
+
+<a name="schema"></a>
+## 1.4 Schéma du fonctionnement du programme
+
+<p align="center">
+  <img src="https://github.com/ronanren/LPC1768_Morpion/blob/main/Images/schema.png?raw=true" width="800"/>
+</p>
 
 <a name="Utilisation"></a>
 # 2. Utilisation
