@@ -63,7 +63,7 @@ fonctions
 ├── pin.c
 │   └── void pin_Configuration(); # Initialise les broches pour la gestion de la mémoire par l'I2C0 et le bouton poussoir KEY1
 ├── timer1.c
-│   └── void timer1_init(); # Initialisation d'un timer1 qui va partir en interruption toute les 10ms avec une précision de 500us
+│   └── void timer1_init(); # Initialisation d'un timer1 qui va partir en interruption toute les 2.5ms avec une précision de 500us
 ```
 
 <a name="traitement"></a>
@@ -86,7 +86,7 @@ lcd_Initializtion(); // init du pinsel de l'ecran et init du LCD
 ```c
 timer1_init();
 ```
-Mise en place du timer avec intéruption toute les 10ms puis vérification toute les 100ms à l'aide d'un compteur le touché sur l'écran tactile (variable flagtacheclavier) et l'appui sur un bouton de la carte mère (variable flagbouton).
+Mise en place du timer avec intéruption toute les 2.5ms puis vérification toute les 25ms à l'aide d'un compteur le touché sur l'écran tactile (variable flagtacheclavier) et l'appui sur un bouton de la carte mère (variable flagbouton).
 
 ```c
 write_lcd();

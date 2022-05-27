@@ -9,7 +9,7 @@
 #include "affichagelcd.h"
 #include "touch\ili_lcd_general.h"
 
-// Initialisation d'un timer1 qui va partir en interruption toute les 10ms avec une pr�cision de 500us
+// Initialisation d'un timer1 qui va partir en interruption toute les 2.5ms avec une pr�cision de 500us
 void timer1_init(){
 		int cpt_LCD = 0;
 	
@@ -41,7 +41,7 @@ void timer1_init(){
 		maconfigmatch.IntOnMatch = ENABLE; // Interruption generee quand ca match
 		maconfigmatch.StopOnMatch = DISABLE;
 		maconfigmatch.MatchChannel = 0; // on utilise MR0
-		maconfigmatch.MatchValue = 5; // correspond a la duree d'une demie-periode de 10ms
+		maconfigmatch.MatchValue = 5; // correspond a la duree pour un match de 2.5ms
 		maconfigmatch.ResetOnMatch = ENABLE; // remet TC a 0 quand ca match
 		// appel de la fonction qui va initialiser les registres
 		TIM_ConfigMatch(LPC_TIM1, &maconfigmatch);
@@ -50,7 +50,7 @@ void timer1_init(){
 }
 
 void TIMER1_IRQHandler(void){
-	cpt_LCD++; // gestion d'un compteur pour scruter le port P0.19 tout les 100ms
+	cpt_LCD++; // gestion d'un compteur pour scruter le port P0.19 tout les 25ms
 	if (cpt_LCD == 10){
 		cpt_LCD=0;
 		// Vérification si il y a un touch� sur l'�cran tactile
